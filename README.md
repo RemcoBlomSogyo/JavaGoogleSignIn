@@ -3,7 +3,9 @@
 ### Backend classes to obtain user information Google by access token.
 
 Go to https://console.developers.google.com to create Oauth 2.0 Client ID.
+
 Inloggegevens > Inloggegevens maken > Client-ID OAuth
+
 The redirect URI that the class needs have to be the same in the developers console.
 
 To get user information the class needs an access token. The client side of your app 
