@@ -15,3 +15,5 @@ The method getUserFromGoogle returns an GoogleUser object with the following dat
 - Given name
 - Family name
 - Email
+
+##### The jar is in the target folder.
