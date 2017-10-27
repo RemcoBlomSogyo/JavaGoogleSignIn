@@ -48,3 +48,9 @@ local.properties
 .cache-main
 .scala_dependencies
 .worksheet
+
+
+# added manually
+target/
+.classpath
+.project
