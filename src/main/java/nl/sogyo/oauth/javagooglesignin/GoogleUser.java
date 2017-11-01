@@ -33,6 +33,25 @@ public class GoogleUser {
 			throw new EmailNotVerifiedException(email);
 		}
 	}
+	
+	/**
+	 * Initializes the GoogleUser object.
+	 * This constructor is only for testing.
+	 * The variables are directly initialized.
+	 * Authentication has never happened.
+	 * DON'T USE THIS IN PRODUCTION!
+	 * 
+	 * @param userId
+	 * @param givenName
+	 * @param familyName
+	 * @param email
+	 */
+	public GoogleUser(String userId, String givenName, String familyName, String email) {
+		this.userId = userId;
+		this.givenName = givenName;
+		this.familyName = familyName;
+		this.email = email;
+	}
 
 	public String getUserId() {
 		return userId;
