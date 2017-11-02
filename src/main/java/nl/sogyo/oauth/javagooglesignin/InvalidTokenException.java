@@ -10,6 +10,6 @@ public class InvalidTokenException extends Exception {
 	private static final long serialVersionUID = 3655022714071380777L;
 
 	public InvalidTokenException() {
-		super("Token verifier returned null. The token is invalid");
+		super("The token is verified invalid by Google");
 	}
 }

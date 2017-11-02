@@ -68,14 +68,18 @@ public class OauthHelper {
 		GoogleIdTokenVerifier verifier = new GoogleIdTokenVerifier.Builder(new NetHttpTransport(), 
 				JacksonFactory.getDefaultInstance()).setAudience(Collections.singletonList(clientId)).build();
 
-		GoogleIdToken idToken = verifier.verify(idTokenString);
-
-		if (idToken != null) {
-		  Payload payload = idToken.getPayload();
-		  GoogleUser user = new GoogleUser(payload);
-		  return user;
-		} else {
-		  throw new InvalidTokenException();
+		GoogleIdToken idToken;
+		try {
+			idToken = verifier.verify(idTokenString);
+		} catch (IllegalArgumentException e) {
+			idToken = null;
 		}
+
+		if (idToken == null) {
+			throw new InvalidTokenException();
+		} 
+		Payload payload = idToken.getPayload();
+		GoogleUser user = new GoogleUser(payload);
+		return user;
 	}
 }
