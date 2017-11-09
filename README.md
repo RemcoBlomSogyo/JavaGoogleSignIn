@@ -8,11 +8,13 @@ Inloggegevens > Inloggegevens maken > Client-ID OAuth
 
 The redirect URI that the class needs have to be the same in the developers console.
 
-To get user information the class needs an access token. The client side of your app 
+To get user information the class needs an id token. The client side of your app 
 can obtain this token from Google by a sign in of the user. 
-Documentation for getting this access token: https://developers.google.com/identity/sign-in/web/server-side-flow
+Documentation for getting this id token: https://developers.google.com/identity/sign-in/web/backend-auth
 
-The method getUserFromGoogle returns an GoogleUser object with the following data:
+Warning: the method needs an id token, and not the user id itself. Sending the user id from client to server is not safe.
+
+The method getUserFromToken returns a GoogleUser object with the following data:
 - User ID
 - Given name
 - Family name
