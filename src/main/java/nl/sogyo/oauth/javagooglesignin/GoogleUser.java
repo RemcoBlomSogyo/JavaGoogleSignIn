@@ -1,4 +1,4 @@
-package nl.sogyo.oauth.javagooglesignin.googleuser;
+package nl.sogyo.oauth.javagooglesignin;
 
 import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken.Payload;
 
@@ -6,10 +6,10 @@ import nl.sogyo.oauth.javagooglesignin.exception.EmailNotVerifiedException;
 
 /**
  * The GoogleUser class represents information of a Google user.
- * Each child of a GooglUser object contains a user ID, a given name, a family name
+ * The GooglUser object contains a user ID, a given name, a family name
  * and a email address.
  */
-public abstract class GoogleUser {
+public class GoogleUser {
 
 	private String userId;
 	private String givenName;
@@ -17,7 +17,11 @@ public abstract class GoogleUser {
 	private String email;
 	
 	/**
-	 * Initializes the variables for the AuthenticGoogleUser object.
+ 	 * Initializes the GoogleUser object.
+	 * The constructor needs a payload object that could obtained by the
+	 * GoogleIdToken. It throws an EmailNotVerifiedException if the email
+	 * address in the payload has not been verified by Google.
+
 	 * 
 	 * @param payload
 	 * @throws EmailNotVerifiedException
@@ -31,21 +35,6 @@ public abstract class GoogleUser {
 		} else {
 			throw new EmailNotVerifiedException(email);
 		}
-	}
-	
-	/**
-	 * Initializes the variables for the TestGoogleUser object.
-	 * 
-	 * @param userId
-	 * @param givenName
-	 * @param familyName
-	 * @param email
-	 */
-	public GoogleUser(String userId, String givenName, String familyName, String email) {
-		this.userId = userId;
-		this.givenName = givenName;
-		this.familyName = familyName;
-		this.email = email;
 	}
 
 	public String getUserId() {
