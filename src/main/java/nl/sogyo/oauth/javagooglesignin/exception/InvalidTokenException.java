@@ -1,4 +1,4 @@
-package nl.sogyo.oauth.javagooglesignin;
+package nl.sogyo.oauth.javagooglesignin.exception;
 
 /**
  * The InvalidTokenException class is a checked exception that 

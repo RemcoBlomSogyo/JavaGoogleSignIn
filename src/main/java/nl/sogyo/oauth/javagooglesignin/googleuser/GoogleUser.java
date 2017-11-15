@@ -1,13 +1,15 @@
-package nl.sogyo.oauth.javagooglesignin;
+package nl.sogyo.oauth.javagooglesignin.googleuser;
 
 import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken.Payload;
 
+import nl.sogyo.oauth.javagooglesignin.exception.EmailNotVerifiedException;
+
 /**
  * The GoogleUser class represents information of a Google user.
- * Each GooglUser object contains a user ID, a given name, a family name
+ * Each child of a GooglUser object contains a user ID, a given name, a family name
  * and a email address.
  */
-public class GoogleUser {
+public abstract class GoogleUser {
 
 	private String userId;
 	private String givenName;
@@ -15,10 +17,7 @@ public class GoogleUser {
 	private String email;
 	
 	/**
-	 * Initializes the GoogleUser object.
-	 * The constructor needs a payload object that could obtained by the
-	 * GoogleIdToken. It throws an EmailNotVerifiedException if the email
-	 * address in the payload has not been verified by Google.
+	 * Initializes the variables for the AuthenticGoogleUser object.
 	 * 
 	 * @param payload
 	 * @throws EmailNotVerifiedException
@@ -35,11 +34,7 @@ public class GoogleUser {
 	}
 	
 	/**
-	 * Initializes the GoogleUser object.
-	 * This constructor is only for testing.
-	 * The variables are directly initialized.
-	 * Authentication has never happened.
-	 * DON'T USE THIS IN PRODUCTION!
+	 * Initializes the variables for the TestGoogleUser object.
 	 * 
 	 * @param userId
 	 * @param givenName
@@ -57,32 +52,16 @@ public class GoogleUser {
 		return userId;
 	}
 
-	public void setUserId(String userId) {
-		this.userId = userId;
-	}
-
 	public String getGivenName() {
 		return givenName;
 	}
 
-	public void setGivenName(String givenName) {
-		this.givenName = givenName;
-	}
-	
 	public String getFamilyName() {
 		return familyName;
-	}
-
-	public void setFamilyName(String familyName) {
-		this.familyName = familyName;
 	}
 	
 	public String getEmail() {
 		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
 	}
 	
 	private boolean isEmailVerified(Payload payload) {

@@ -13,6 +13,10 @@ import com.google.api.client.googleapis.auth.oauth2.GoogleIdTokenVerifier;
 import com.google.api.client.http.javanet.NetHttpTransport;
 import com.google.api.client.json.jackson2.JacksonFactory;
 
+import nl.sogyo.oauth.javagooglesignin.exception.EmailNotVerifiedException;
+import nl.sogyo.oauth.javagooglesignin.exception.InvalidTokenException;
+import nl.sogyo.oauth.javagooglesignin.googleuser.AuthenticGoogleUser;
+
 /**
  * The OauthHelper class makes it possible to retrieve Google profile information
  * by an authorization code that has been obtained by a Google sign-in that
@@ -63,7 +67,7 @@ public class OauthHelper {
 	 * @throws EmailNotVerifiedException
 	 * @throws InvalidTokenException
 	 */
-	public GoogleUser getUserFromToken(String idTokenString) throws IOException, GeneralSecurityException, 
+	public AuthenticGoogleUser getUserFromToken(String idTokenString) throws IOException, GeneralSecurityException, 
 			EmailNotVerifiedException, InvalidTokenException {
 		GoogleIdTokenVerifier verifier = new GoogleIdTokenVerifier.Builder(new NetHttpTransport(), 
 				JacksonFactory.getDefaultInstance()).setAudience(Collections.singletonList(clientId)).build();
@@ -79,7 +83,7 @@ public class OauthHelper {
 			throw new InvalidTokenException();
 		} 
 		Payload payload = idToken.getPayload();
-		GoogleUser user = new GoogleUser(payload);
+		AuthenticGoogleUser user = new AuthenticGoogleUser(payload);
 		return user;
 	}
 }
